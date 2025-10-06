@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siyam Desilva | Data Analyst Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2721/2721261.png">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-white {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    .skill-card {
+      transition: all 0.3s ease;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+    
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .project-card {
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .project-card:hover::before {
+      left: 100%;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+    }
+    
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      animation: float 8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-gray-900 font-sans">
+
+  <!-- Animated Background Blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="blob bg-purple-500 w-96 h-96 top-0 left-0" style="animation-delay: 0s;"></div>
+    <div class="blob bg-blue-500 w-96 h-96 bottom-0 right-0" style="animation-delay: 2s;"></div>
+    <div class="blob bg-pink-500 w-96 h-96 top-1/2 left-1/2" style="animation-delay: 4s;"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="nav-glass shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Siyam Desilva</h1>
+      <div class="space-x-6 hidden md:flex">
+        <a href="#about" class="hover:text-blue-600 transition-colors font-medium">About</a>
+        <a href="#experience" class="hover:text-blue-600 transition-colors font-medium">Experience</a>
+        <a href="#education" class="hover:text-blue-600 transition-colors font-medium">Education</a>
+        <a href="#projects" class="hover:text-blue-600 transition-colors font-medium">Projects</a>
+        <a href="#skills" class="hover:text-blue-600 transition-colors font-medium">Skills</a>
+        <a href="#contact" class="hover:text-blue-600 transition-colors font-medium">Contact</a>
+      </div>
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="menu" class="hidden flex flex-col glass-white shadow-lg md:hidden">
+      <a href="#about" class="p-3 hover:bg-blue-100 transition-colors">About</a>
+      <a href="#experience" class="p-3 hover:bg-blue-100 transition-colors">Experience</a>
+      <a href="#education" class="p-3 hover:bg-blue-100 transition-colors">Education</a>
+      <a href="#projects" class="p-3 hover:bg-blue-100 transition-colors">Projects</a>
+      <a href="#skills" class="p-3 hover:bg-blue-100 transition-colors">Skills</a>
+      <a href="#contact" class="p-3 hover:bg-blue-100 transition-colors">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-32 gradient-bg text-white overflow-hidden">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <!-- Left Side - Text Content -->
+        <div class="text-center md:text-left fade-in-up order-2 md:order-1">
+          <div class="inline-block glass px-4 py-2 rounded-full mb-4 text-sm font-medium">
+            👋 Welcome to my portfolio
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 floating">
+            Siyam Desilva
+          </h1>
+          <p class="text-xl md:text-2xl mb-4 font-light">Data Analyst</p>
+          <p class="text-lg md:text-xl mb-8 text-gray-200">
+            Data Analyst | Visualization | Power BI | SQL | Python | Machine Learning
+          </p>
+          <div class="flex justify-center md:justify-start gap-4 flex-wrap">
+            <a href="mailto:i.shyamdesilva@gmail.com" class="glass px-6 py-3 rounded-full font-medium hover:bg-white hover:text-blue-700 transition-all transform hover:scale-105 flex items-center gap-2">
+              <span>📧</span> Email Me
+            </a>
+            <a href="https://www.linkedin.com/in/siyam-desilva" target="_blank" class="glass px-6 py-3 rounded-full font-medium hover:bg-white hover:text-blue-700 transition-all transform hover:scale-105 flex items-center gap-2">
+              <span>💼</span> LinkedIn
+            </a>
+          </div>
+          <div class="mt-8 flex justify-center md:justify-start gap-6 text-sm">
+            <div class="text-center">
+              <div class="text-3xl font-bold">2+</div>
+              <div class="text-gray-200">Years Experience</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">2+</div>
+              <div class="text-gray-200">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold">8+</div>
+              <div class="text-gray-200">Skills</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side - Photo with Decorative Elements -->
+        <div class="relative flex justify-center items-center order-1 md:order-2">
+          <div class="relative">
+            <!-- Decorative rings -->
+            <div class="absolute inset-0 rounded-full border-4 border-white/20 scale-110 animate-pulse"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-white/10 scale-125" style="animation: float 4s ease-in-out infinite;"></div>
+            
+            <!-- Main photo container -->
+            <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glass border-4 border-white/30 shadow-2xl">
+              <img 
+                src="siyam.jpg" 
+                alt="Siyam Desilva" 
+                class="w-full h-full object-cover"
+                id="profile-photo"
+              />
+              <!-- Overlay gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent"></div>
+            </div>
+            
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 glass px-4 py-2 rounded-full text-sm font-bold shadow-lg floating">
+              📊 Visualization
+            </div>
+            <div class="absolute -bottom-4 -left-4 glass px-4 py-2 rounded-full text-sm font-bold shadow-lg" style="animation: float 6s ease-in-out infinite;">
+              🤖 Power BI 
+            </div>
+            <div class="absolute top-1/2 -left-8 glass px-4 py-2 rounded-full text-sm font-bold shadow-lg" style="animation: float 5s ease-in-out infinite;">
+              🐍 Python
+            </div>
+            <div class="absolute top-1/4 -right-8 glass px-4 py-2 rounded-full text-sm font-bold shadow-lg" style="animation: float 7s ease-in-out infinite;">
+              📈 Analytics
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="relative container mx-auto px-6 py-20 z-10">
+    <div class="glass-white rounded-3xl p-8 md:p-12 shadow-2xl">
+      <h2 class="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">About Me</h2>
+      <p class="max-w-3xl mx-auto text-center text-gray-800 leading-relaxed text-lg">
+        Detail-oriented Data Analyst skilled in extracting actionable insights from complex datasets. Proficient in statistical analysis, data visualization, and leveraging tools to drive informed decision-making. Adept at translating business needs into analytical solutions that enhance efficiency and performance. Strong communicator with a keen eye for patterns and trends.
+      </p>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="relative py-20 z-10">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-white">Experience</h2>
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">💼</div>
+            <div class="flex-1">
+              <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                <h3 class="text-2xl font-semibold text-gray-900">Data Analyst Intern</h3>
+                <span class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Internship</span>
+              </div>
+              <p class="text-gray-600 font-medium">HCL Technologies</p>
+              <p class="text-gray-500 text-sm mt-1">📍 Coimbatore, India | 📅 February 2025 - March 2025</p>
+              <p class="text-gray-700 mt-4 leading-relaxed">Gained hands-on experience in data analysis, working with real-world datasets and business problems. Applied analytical skills to extract insights and support data-driven decision-making processes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="relative py-20 z-10">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-white">Education</h2>
+      <div class="space-y-8">
+        <div class="glass-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">MS</div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-900">MSc Data Science and Business Analysis</h3>
+              <p class="text-gray-600 mt-1">Rathinam College, Bharathiyar University | Coimbatore (2023 - 2025)</p>
+              <div class="mt-3 inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">GPA: 7.9 / 10</div>
+              <p class="text-gray-700 mt-3 leading-relaxed">Built strong skills in data science, machine learning, and business analysis using Python, SQL, and visualization tools.</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+          <div class="flex items-start gap-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">BS</div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-900">BSc Statistics</h3>
+              <p class="text-gray-600 mt-1">St Joseph's College, Bharathidasan University | Tiruchirappalli (2020 - 2023)</p>
+              <div class="mt-3 inline-block bg-gradient-to-r from-purple-500 to-pink-600 text-white px-4 py-1 rounded-full text-sm font-semibold">GPA: 7.3 / 10</div>
+              <p class="text-gray-700 mt-3 leading-relaxed">Developed strong analytical and statistical skills through academic projects and software tools like Excel, R, and Python.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="relative container mx-auto px-6 py-20 z-10">
+    <h2 class="text-4xl font-bold text-center mb-12 text-white">Projects</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="project-card glass-white rounded-2xl p-8 shadow-xl">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-xl">📊</div>
+          <h3 class="text-2xl font-semibold text-gray-900">Retail Sales Trend Analysis</h3>
+        </div>
+        <p class="text-gray-700 mb-4 leading-relaxed">Analyzed retail sales data to identify trends, seasonality, and product performance. Applied ML models to forecast future sales.</p>
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center gap-2 text-gray-700">
+            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+            <span>Built an interactive dashboard using Streamlit</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-700">
+            <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+            <span>Used Python, SQL, and visualization tools</span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-700">
+            <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+            <span>Enabled data-driven business decisions</span>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Python</span>
+          <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">SQL</span>
+          <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm">Streamlit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="relative py-20 z-10">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-white">Skills & Expertise</h2>
+      
+      <!-- Technical Skills -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-semibold text-white text-center mb-8">Technical Skills</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">🗄️</div>
+            SQL
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">🐍</div>
+            Python
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">📊</div>
+            Power BI
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">📈</div>
+            Excel Analytics
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">🤖</div>
+            Machine Learning
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">📉</div>
+            Data Visualization
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">🐼</div>
+            Pandas
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">🔢</div>
+            NumPy
+          </div>
+          <div class="skill-card glass-white py-6 px-4 rounded-xl shadow-lg text-center font-semibold text-gray-800">
+            <div class="text-3xl mb-2">📊</div>
+            Matplotlib
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills & Languages -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Soft Skills -->
+        <div class="glass-white p-8 rounded-2xl shadow-xl">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <span class="text-3xl">💡</span> Soft Skills
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-gray-800">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span class="font-medium">Leadership</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-800">
+              <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+              <span class="font-medium">Communication</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-800">
+              <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+              <span class="font-medium">Adaptability</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="glass-white p-8 rounded-2xl shadow-xl">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <span class="text-3xl">🌐</span> Languages
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-gray-800">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span class="font-medium">Tamil</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-800">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span class="font-medium">English</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training & Courses -->
+      <div class="mt-12">
+        <h3 class="text-2xl font-semibold text-white text-center mb-8">Training & Courses</h3>
+        <div class="max-w-2xl mx-auto">
+          <div class="glass-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center text-white text-2xl flex-shrink-0">🎓</div>
+              <div>
+                <h4 class="text-xl font-semibold text-gray-900">SQL Training</h4>
+                <p class="text-gray-600 mt-1">Comprehensive training in SQL database management and query optimization</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="relative py-20 text-center z-10">
+    <div class="container mx-auto px-6">
+      <div class="glass-white rounded-3xl p-12 shadow-2xl max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Let's Connect</h2>
+        <p class="text-gray-700 mb-6 text-lg">📍 Chennai, India</p>
+        <div class="flex justify-center gap-6 flex-wrap">
+          <a href="mailto:i.shyamdesilva@gmail.com" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all">Email</a>
+          <a href="https://www.linkedin.com/in/siyam-desilva" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all">LinkedIn</a>
+          <a href="https://www.naukri.com/mnjuser/profile" target="_blank" class="bg-gradient-to-r from-pink-500 to-red-600 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all">Naukri</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-gradient-to-r from-slate-900 to-purple-900 text-white py-8 text-center z-10">
+    <p class="text-lg">&copy; 2025 Siyam Desilva. All rights reserved.</p>
+    <p class="text-sm text-gray-300 mt-2">Crafted with passion and data-driven insights</p>
+  </footer>
+
+  <!-- JS for Mobile Menu -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          menu.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Photo upload functionality
+    const profilePhoto = document.getElementById('profile-photo');
+    if (profilePhoto) {
+      profilePhoto.addEventListener('click', function() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+              profilePhoto.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        input.click();
+      });
+      profilePhoto.style.cursor = 'pointer';
+      profilePhoto.title = 'Click to change photo';
+    }
+    
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
